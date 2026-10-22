@@ -1,0 +1,46 @@
+[
+  {
+    "block": 16289555,
+    "observedAt": 1792630405,
+    "action": "PROTECT",
+    "practice": "HEDGE",
+    "icrBps": 12701,
+    "bull": 200,
+    "bear": 719,
+    "note": "block before Lifeline redemption-guard lift tx 0x2374b4b318d0f80c8b8ce4c5daec692d879825fdad7b26889693c1c389746e91 (block 16289556)",
+    "evidenceHash": "0xcad126192ef29efc78f861ec8f9fbfea206c4edce02ac3dd60995e35d9d690aa"
+  },
+  {
+    "block": 16289557,
+    "observedAt": 1792630417,
+    "action": "HOLD",
+    "practice": "NONE",
+    "icrBps": 13408,
+    "bull": 481,
+    "bear": 260,
+    "note": "block after the redemption-guard lift: trove moved out of the redemption danger zone",
+    "evidenceHash": "0x7222817bf399bb0844684dcd324a2f30e3e743139545c849ca52c60e0c4c764c"
+  },
+  {
+    "block": 16289564,
+    "observedAt": 1792630450,
+    "action": "PROTECT",
+    "practice": "HEDGE",
+    "icrBps": 13409,
+    "bull": 200,
+    "bear": 660,
+    "note": "block before Lifeline trigger rescue tx 0x1470fdfb0b0ce434cf104feb5dd4869af458b4e70d55fb1d97fc2e032d1413ea (block 16289565)",
+    "evidenceHash": "0xc07ed65dca3b7519d71514e43a9152f425b485180e8a7fba8dff62f93a004393"
+  },
+  {
+    "block": 16289566,
+    "observedAt": 1792630457,
+    "action": "HOLD",
+    "practice": "NONE",
+    "icrBps": 15000,
+    "bull": 700,
+    "bear": 60,
+    "note": "block after the trigger rescue: trove restored to 150%",
+    "evidenceHash": "0x8cc07a33913131a78310cfb4431f216ab72ca2b4c67543d8321a09dbcca0c0a2"
+  }
+]

@@ -1,0 +1,234 @@
+{
+  "reconstructed": true,
+  "note": "block before Lifeline redemption-guard lift tx 0x2374b4b318d0f80c8b8ce4c5daec692d879825fdad7b26889693c1c389746e91 (block 16289556)",
+  "evidence": {
+    "schema": "lifeline-sentinel/evidence/v1",
+    "observedAt": 1792630405,
+    "mezo": {
+      "chainId": 31611,
+      "block": "16289555",
+      "blockTime": "1792630405",
+      "vault": "0xc92bfdc83b03d32e39930bfb789233e1cc0fdbef",
+      "vaultOwner": "0xfeede29e521cd2ebbb31aba13c1b145090b6c4a7",
+      "troveStatus": 1,
+      "priceE18": "84178686600000000000000",
+      "icrE18": "1270186682076773907",
+      "triggerE18": "1200000000000000000",
+      "targetE18": "1300000000000000000",
+      "recoveryMode": false,
+      "needsProtection": true,
+      "collWei": "30205504893129884",
+      "debtWei": "2001800023470771194885",
+      "reserveBtcWei": "9000000000000000",
+      "reserveMusdWei": "0",
+      "liquidationPriceE18": "72899957594109922639966",
+      "redemptionSafeIcrE18": "1330716991089616889",
+      "redemptionRisk": true,
+      "tcrE18": "3024363801930555212",
+      "queueSize": "283",
+      "rankFromFront": "10",
+      "debtAheadWei": "18593738467395599717870",
+      "walkComplete": true,
+      "lifelineVaults": "1",
+      "front": [
+        {
+          "borrower": "0xda04759e54728b6636fe48f7c9795c7b609baaaa",
+          "icrE18": "1139245446503336739",
+          "debtWei": "2212114630052566771974"
+        },
+        {
+          "borrower": "0x03ffb3720214bdb0db5f5f71b6ce16b008f762d2",
+          "icrE18": "1149346133791884141",
+          "debtWei": "2196995306896320550856"
+        },
+        {
+          "borrower": "0x4799e9fb361fb6a85473bb08da00a4012e02cf08",
+          "icrE18": "1166859610492643473",
+          "debtWei": "2002987764475082283801"
+        },
+        {
+          "borrower": "0xe1cb426518f06ce90b6f22cda7f9ba0aef58c007",
+          "icrE18": "1175230601557708230",
+          "debtWei": "2055705750188780171164"
+        },
+        {
+          "borrower": "0xbe65d538e887d09a73354172c4411335fc2cbdb6",
+          "icrE18": "1196332661949198557",
+          "debtWei": "2101845575027084860101"
+        }
+      ]
+    },
+    "chainlink": {
+      "network": "ethereum-mainnet",
+      "feed": "0xf4030086522a5beea4988f8ca5b36dbc97bee88c",
+      "roundId": "129127208515966886639",
+      "answerE8": "8414297564304",
+      "updatedAt": "1792627475"
+    },
+    "market": {
+      "btcUsdCentsCoingecko": "8426326",
+      "btcUsdCentsCoinbase": "8418988",
+      "musdUsdMicros": "990092"
+    }
+  },
+  "decision": {
+    "observedAt": 1792630405,
+    "mezoBlock": "16289555",
+    "vault": "0xc92bfdc83b03d32e39930bfb789233e1cc0fdbef",
+    "action": 2,
+    "actionName": "PROTECT",
+    "practice": 2,
+    "practiceName": "HEDGE",
+    "practiceSize": "15102752446564942",
+    "confidenceBps": 10000,
+    "icrBps": 12701,
+    "bull": {
+      "agent": "bull",
+      "score": 200,
+      "arguments": [
+        {
+          "id": "B4_rescue_prefunded",
+          "claim": "The vault holds a rescue reserve, so a protect() call can lift the trove without the owner online.",
+          "points": 100,
+          "evidence": [
+            "mezo.reserveBtcWei",
+            "mezo.reserveMusdWei"
+          ]
+        },
+        {
+          "id": "B5_system_healthy",
+          "claim": "System TCR 302.43% and no Recovery Mode: the 110% line applies, not 150%.",
+          "points": 50,
+          "evidence": [
+            "mezo.tcrE18",
+            "mezo.recoveryMode"
+          ]
+        },
+        {
+          "id": "B6_prices_agree",
+          "claim": "Mezo oracle $84,178.68 and Chainlink $84,142.97 agree within 0.04%.",
+          "points": 50,
+          "evidence": [
+            "mezo.priceE18",
+            "chainlink.answerE8",
+            "market.btcUsdCentsCoingecko",
+            "market.btcUsdCentsCoinbase"
+          ]
+        }
+      ]
+    },
+    "bear": {
+      "agent": "bear",
+      "score": 719,
+      "arguments": [
+        {
+          "id": "R1_near_trigger",
+          "claim": "Only 7.01% of ICR headroom above the trigger.",
+          "points": 59,
+          "evidence": [
+            "mezo.icrE18",
+            "mezo.triggerE18"
+          ]
+        },
+        {
+          "id": "R2_redemption_risk",
+          "claim": "The vault itself flags redemption risk: too little debt is ahead of it in the queue.",
+          "points": 400,
+          "evidence": [
+            "mezo.redemptionRisk",
+            "mezo.redemptionSafeIcrE18"
+          ]
+        },
+        {
+          "id": "R3_liquidation_close",
+          "claim": "A 13.39% BTC drop would liquidate this trove.",
+          "points": 200,
+          "evidence": [
+            "mezo.priceE18",
+            "mezo.liquidationPriceE18"
+          ]
+        },
+        {
+          "id": "R8_peg_pressure",
+          "claim": "MUSD below peg ($0.9901) makes redemptions profitable, so redemption pressure on the front of the queue rises.",
+          "points": 60,
+          "evidence": [
+            "market.musdUsdMicros",
+            "mezo.front"
+          ]
+        }
+      ]
+    },
+    "trail": [
+      {
+        "rule": "Q1_trove_active",
+        "passed": true,
+        "detail": "troveStatus=1 (1 = active)"
+      },
+      {
+        "rule": "Q2_oracle_agreement",
+        "passed": true,
+        "detail": "mezo vs chainlink 4 bps <= 200"
+      },
+      {
+        "rule": "Q3_cex_agreement",
+        "passed": true,
+        "detail": "coingecko vs coinbase 8 bps <= 150"
+      },
+      {
+        "rule": "Q4_chainlink_fresh",
+        "passed": true,
+        "detail": "age 2930s <= 7200s"
+      },
+      {
+        "rule": "Q5_snapshot_fresh",
+        "passed": true,
+        "detail": "lag 0s <= 900s"
+      },
+      {
+        "rule": "Q6_queue_walk_complete",
+        "passed": true,
+        "detail": "walkComplete=true"
+      },
+      {
+        "rule": "R1_needs_protection",
+        "passed": true,
+        "detail": "vault.needsProtection=true"
+      },
+      {
+        "rule": "R1a_reserve_funded",
+        "passed": true,
+        "detail": "reserve available -> PROTECT"
+      },
+      {
+        "rule": "P2_hedge",
+        "passed": true,
+        "detail": "net 519 >= 300: short 50% of collateral"
+      }
+    ],
+    "metrics": {
+      "icrBps": 12701,
+      "triggerBps": 12000,
+      "headroomBps": 701,
+      "liquidationGapBps": 1339,
+      "debtAheadMusd": 18593,
+      "redemptionBufferMusd": 25000,
+      "rankFromFront": 10,
+      "queueSize": 283,
+      "reserveFunded": true,
+      "tcrBps": 30243,
+      "mezoPriceCents": 8417868,
+      "chainlinkCents": 8414297,
+      "oracleDeviationBps": 4,
+      "cexDeviationBps": 8,
+      "chainlinkAgeSec": 2930,
+      "snapshotLagSec": 0,
+      "musdMicros": 990092,
+      "arbEdgeBps": 24
+    },
+    "evidenceHash": "0xcad126192ef29efc78f861ec8f9fbfea206c4edce02ac3dd60995e35d9d690aa",
+    "policyHash": "0x57065b3444adb76b5fbdc26e209f2d89ec531bdce8a189657e6ddfc527304b89",
+    "reasoningHash": "0xe6c249523d42b585893260188f6f1ed0ef968003ba577769eff1689a72b211c5"
+  },
+  "report": "0x000000000000000000000000000000000000000000000000000000006ad95e850000000000000000000000000000000000000000000000000000000000f88f13000000000000000000000000c92bfdc83b03d32e39930bfb789233e1cc0fdbef000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000002710000000000000000000000000000000000000000000000000000000000000319d00000000000000000000000000000000000000000000000000000000000000c800000000000000000000000000000000000000000000000000000000000002cf0000000000000000000000000000000000000000000000000035a7df92b54a4ecad126192ef29efc78f861ec8f9fbfea206c4edce02ac3dd60995e35d9d690aa57065b3444adb76b5fbdc26e209f2d89ec531bdce8a189657e6ddfc527304b89e6c249523d42b585893260188f6f1ed0ef968003ba577769eff1689a72b211c5"
+}
