@@ -1,0 +1,7 @@
+# CRE project settings. Mezo is read over HTTP (JSON-RPC), so only the Chainlink feed chain needs an RPC here.
+staging-settings:
+  rpcs:
+    - chain-name: ethereum-mainnet
+      url: https://ethereum-rpc.publicnode.com
+    - chain-name: ethereum-testnet-sepolia
+      url: https://ethereum-sepolia-rpc.publicnode.com
