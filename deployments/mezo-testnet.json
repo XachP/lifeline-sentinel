@@ -1,0 +1,8 @@
+{
+  "chainId": 31611,
+  "sentinelLens": "0x007dD5902f0B50099ce163e1E12a74275f5e02B5",
+  "decisionLog": "0x8ACFA64297Cd64590ff9D18067cdb475A65a3880",
+  "relayer": "0xFeEde29e521cd2ebbb31AbA13c1b145090b6c4a7",
+  "policyV1Hash": "0x57065b3444adb76b5fbdc26e209f2d89ec531bdce8a189657e6ddfc527304b89",
+  "broadcast": "contracts/broadcast/Deploy.s.sol/31611/run-latest.json"
+}
