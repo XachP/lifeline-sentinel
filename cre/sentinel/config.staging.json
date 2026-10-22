@@ -1,0 +1,20 @@
+{
+  "schedule": "0 */10 * * * *",
+  "mezo": {
+    "rpcUrl": "https://rpc.test.mezo.org",
+    "chainId": 31611,
+    "lens": "0x007dD5902f0B50099ce163e1E12a74275f5e02B5",
+    "vault": "0xC92BfDC83b03d32e39930Bfb789233e1Cc0fdbEF",
+    "confirmations": 2,
+    "maxWalk": 400,
+    "frontN": 5
+  },
+  "chainlink": {
+    "chainSelectorName": "ethereum-mainnet",
+    "btcUsdFeed": "0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c"
+  },
+  "market": {
+    "coingeckoUrl": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,mezo-usd&vs_currencies=usd",
+    "coinbaseUrl": "https://api.coinbase.com/v2/prices/BTC-USD/spot"
+  }
+}

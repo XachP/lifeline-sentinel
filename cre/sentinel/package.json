@@ -1,0 +1,27 @@
+{
+  "name": "lifeline-sentinel-workflow",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/main.js",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.node.json",
+    "test": "bun test",
+    "compile": "cre-compile main.ts dist/sentinel.wasm",
+    "decide": "bun cli.ts",
+    "relay": "bun cli.ts --relay",
+    "replay": "bun cli.ts --replay",
+    "simulate": "cd .. && cre workflow simulate sentinel --target staging-settings",
+    "build:web": "bun build core/browser.ts --target browser --minify --outfile ../../docs/sentinel-core.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@chainlink/cre-sdk": "1.23.0",
+    "viem": "2.34.0",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/bun": "1.3.0"
+  }
+}

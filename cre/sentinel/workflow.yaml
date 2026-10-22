@@ -1,0 +1,8 @@
+# CRE workflow settings (see project.yaml for RPCs)
+staging-settings:
+  user-workflow:
+    workflow-name: "lifeline-sentinel-staging"
+  workflow-artifacts:
+    workflow-path: "./main.ts"
+    config-path: "./config.staging.json"
+    secrets-path: ""
