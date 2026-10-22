@@ -1,0 +1,12 @@
+node_modules/
+contracts/out/
+contracts/cache/
+contracts/broadcast/*/31337/
+*.env
+.env*
+!.env.example
+sentinel-workflow/**/.cre_build_tmp.js
+sentinel-workflow/**/*.wasm
+
+contracts/broadcast/**/*.lock
+cre/sentinel/dist/
