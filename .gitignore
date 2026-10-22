@@ -10,3 +10,5 @@ sentinel-workflow/**/*.wasm
 
 contracts/broadcast/**/*.lock
 cre/sentinel/dist/
+
+cre/**/.cre_build_tmp.js

@@ -123,6 +123,8 @@ The records are in `docs/backtest/`. Reconstructed evidence is never logged on-c
 
 ## Run it
 
+**CRE simulation:** `cre workflow simulate` runs clean on live data: cron → HTTP (Mezo pinned block 16295727, CoinGecko/Coinbase) + EVM (Chainlink BTC/USD) → bull 470 / bear 348 → judge → **HOLD** + REDEMPTION_ARB practice ticket → signed report. See [cre/SIMULATION.md](cre/SIMULATION.md) and the raw [transcript](cre/simulation-output.txt).
+
 ```bash
 # prerequisites: bun ≥ 1.2, Foundry, (optional) Chainlink CRE CLI ≥ 1.39
 cd cre/sentinel && bun install
@@ -134,7 +136,7 @@ bun cli.ts                        # live: gather evidence, debate, judge, print 
 bun cli.ts --replay ../../docs/evidence/<hash>.json   # recompute and check all hashes
 bun cli.ts --at-block 16289555    # backtest at a past Mezo block
 
-cd ../ && cre login && cre workflow simulate sentinel --target staging-settings   # needs a free CRE account
+cd ../ && cre login && cre workflow simulate sentinel --target staging-settings   # free CRE account; transcript: cre/SIMULATION.md
 
 cd ../contracts && forge test                                  # unit + fuzz + cross-language
 forge test --fork-url https://rpc.test.mezo.org                # + live-fork SentinelLens tests
