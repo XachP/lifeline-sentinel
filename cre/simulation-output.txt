@@ -1,0 +1,40 @@
+Initializing...
+Loading settings...
+! Using default private key for chain write simulation. To use your own key, set CRE_ETH_PRIVATE_KEY in your .env file or system environment.
+Checking RPC connectivity...
+Compiling workflow...
+✓ Workflow compiled
+✓ Simulation limits enabled
+  HTTP: req=120kb resp=250kb timeout=10s | ConfHTTP: req=125kb resp=500kb timeout=1m30s | Consensus obs=25kb | ChainWrite evm_report=50kb evm_gas=10000000 solana_report=265b solana_cu=300000 | WASM binary=100mb compressed=20mb
+  Binary hash: 5bc4db00b233b9235bff886a958ce83a2012280ccf3a85c0199d52cc6c92a6ee
+  Config hash: a41735a7796bb0c8f69ef15d0cf7331e57250ba98ec793dae016f314c8f59ede
+2026-10-22T04:07:00Z [SIMULATION] Simulator Initialized
+
+2026-10-22T04:07:00Z [SIMULATION] Running trigger trigger=cron-trigger@1.0.0
+2026-10-22T04:07:00Z [USER LOG] mezo head 16295729 (median), pinned 16295727
+2026-10-22T04:07:01Z [USER LOG] bull 470 [B2_deep_queue,B4_rescue_prefunded,B5_system_healthy,B6_prices_agree,B7_redemption_arb_edge]
+2026-10-22T04:07:01Z [USER LOG] bear 348 [R1_near_trigger,R3_liquidation_close,R8_peg_pressure]
+2026-10-22T04:07:01Z [USER LOG] judge PASS Q1_trove_active: troveStatus=1 (1 = active)
+2026-10-22T04:07:01Z [USER LOG] judge PASS Q2_oracle_agreement: mezo vs chainlink 26 bps <= 200
+2026-10-22T04:07:01Z [USER LOG] judge PASS Q3_cex_agreement: coingecko vs coinbase 0 bps <= 150
+2026-10-22T04:07:01Z [USER LOG] judge PASS Q4_chainlink_fresh: age 2329s <= 7200s
+2026-10-22T04:07:01Z [USER LOG] judge PASS Q5_snapshot_fresh: lag 192s <= 900s
+2026-10-22T04:07:01Z [USER LOG] judge PASS Q6_queue_walk_complete: walkComplete=true
+2026-10-22T04:07:01Z [USER LOG] judge FAIL R1_needs_protection: vault.needsProtection=false
+2026-10-22T04:07:01Z [USER LOG] judge FAIL R2_bear_margin: bear 348 - bull 470 = -122 >= 150
+2026-10-22T04:07:01Z [USER LOG] judge PASS R3_default_hold: no rule requires action
+2026-10-22T04:07:01Z [USER LOG] judge PASS P1_redemption_arb: edge 31 bps >= 25: buy 2000 MUSD, redeem at $1
+2026-10-22T04:07:01Z [USER LOG] decision HOLD conf=6220 practice=REDEMPTION_ARB evidence=0x607d5c7872aed3186f2d67d21b534f58fbdffcc6a9f0bfc562895821ed754066 policy=0x57065b3444adb76b5fbdc26e209f2d89ec531bdce8a189657e6ddfc527304b89
+2026-10-22T04:07:01Z [USER LOG] no write target configured: signed report produced, not submitted
+
+✓ Workflow Simulation Result:
+"{\"action\":\"HOLD\",\"practice\":\"REDEMPTION_ARB\",\"icrBps\":14558,\"bull\":470,\"bear\":348,\"evidenceHash\":\"0x607d5c7872aed3186f2d67d21b534f58fbdffcc6a9f0bfc562895821ed754066\",\"policyHash\":\"0x57065b3444adb76b5fbdc26e209f2d89ec531bdce8a189657e6ddfc527304b89\",\"reasoningHash\":\"0x418f0b256037bdcdbd492159bd85828d5c769cd7a70af3c488b004d1704adcb8\",\"tx\":null}"
+
+2026-10-22T04:07:01Z [SIMULATION] Execution finished signal received
+2026-10-22T04:07:01Z [SIMULATION] Skipping WorkflowEngineV2
+
+╭──────────────────────────────────────────────────────╮
+│ Simulation complete! Ready to deploy your workflow?  │
+│                                                      │
+│ Run cre account access to request deployment access. │
+╰──────────────────────────────────────────────────────╯
