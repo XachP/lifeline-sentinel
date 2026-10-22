@@ -42,5 +42,16 @@
     "bear": 60,
     "note": "block after the trigger rescue: trove restored to 150%",
     "evidenceHash": "0x8cc07a33913131a78310cfb4431f216ab72ca2b4c67543d8321a09dbcca0c0a2"
+  },
+  {
+    "block": 16295727,
+    "observedAt": 1792660008,
+    "action": "HOLD",
+    "practice": "REDEMPTION_ARB",
+    "icrBps": 14558,
+    "bull": 470,
+    "bear": 348,
+    "note": "same block as the cre workflow simulate run (cre/SIMULATION.md)",
+    "evidenceHash": "0x043636a3fefb0cecd671eb5061b3f7a0bb016688f2923be5d9b83719b8fe9560"
   }
 ]

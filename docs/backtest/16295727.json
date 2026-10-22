@@ -1,0 +1,248 @@
+{
+  "reconstructed": true,
+  "note": "",
+  "evidence": {
+    "schema": "lifeline-sentinel/evidence/v1",
+    "observedAt": 1792660008,
+    "mezo": {
+      "chainId": 31611,
+      "block": "16295727",
+      "blockTime": "1792660008",
+      "vault": "0xc92bfdc83b03d32e39930bfb789233e1cc0fdbef",
+      "vaultOwner": "0xfeede29e521cd2ebbb31aba13c1b145090b6c4a7",
+      "troveStatus": 1,
+      "priceE18": "81719695060000000000000",
+      "icrE18": "1455864071529007376",
+      "triggerE18": "1400000000000000000",
+      "targetE18": "1500000000000000000",
+      "recoveryMode": false,
+      "needsProtection": false,
+      "collWei": "35663080599968057",
+      "debtWei": "2001818801990762605969",
+      "reserveBtcWei": "3515136414627638",
+      "reserveMusdWei": "0",
+      "liquidationPriceE18": "61744544922790858750558",
+      "redemptionSafeIcrE18": "1292417045272322091",
+      "redemptionRisk": false,
+      "tcrE18": "2935965963917903241",
+      "queueSize": "287",
+      "rankFromFront": "83",
+      "debtAheadWei": "254376224519103062004066",
+      "walkComplete": true,
+      "lifelineVaults": "1",
+      "front": [
+        {
+          "borrower": "0xda04759e54728b6636fe48f7c9795c7b609baaaa",
+          "icrE18": "1105955971868663701",
+          "debtWei": "2212135286518271688596"
+        },
+        {
+          "borrower": "0x03ffb3720214bdb0db5f5f71b6ce16b008f762d2",
+          "icrE18": "1115761510118364123",
+          "debtWei": "2197015823260270152199"
+        },
+        {
+          "borrower": "0x4799e9fb361fb6a85473bb08da00a4012e02cf08",
+          "icrE18": "1132763199684631941",
+          "debtWei": "2003006526109620473785"
+        },
+        {
+          "borrower": "0xe1cb426518f06ce90b6f22cda7f9ba0aef58c007",
+          "icrE18": "1140889622099316074",
+          "debtWei": "2055724938497015681362"
+        },
+        {
+          "borrower": "0xbe65d538e887d09a73354172c4411335fc2cbdb6",
+          "icrE18": "1161375024062087045",
+          "debtWei": "2101865271678179651236"
+        }
+      ]
+    },
+    "chainlink": {
+      "network": "ethereum-mainnet",
+      "feed": "0xf4030086522a5beea4988f8ca5b36dbc97bee88c",
+      "roundId": "129127208515966886649",
+      "answerE8": "8193536000000",
+      "updatedAt": "1792657871"
+    },
+    "market": {
+      "btcUsdCentsCoingecko": "8173287",
+      "btcUsdCentsCoinbase": "8171674",
+      "musdUsdMicros": "989350"
+    }
+  },
+  "decision": {
+    "observedAt": 1792660008,
+    "mezoBlock": "16295727",
+    "vault": "0xc92bfdc83b03d32e39930bfb789233e1cc0fdbef",
+    "action": 0,
+    "actionName": "HOLD",
+    "practice": 1,
+    "practiceName": "REDEMPTION_ARB",
+    "practiceSize": "2000000000000000000000",
+    "confidenceBps": 6220,
+    "icrBps": 14558,
+    "bull": {
+      "agent": "bull",
+      "score": 470,
+      "arguments": [
+        {
+          "id": "B2_deep_queue",
+          "claim": "254,376 MUSD of other debt (rank 83 of 287) would be redeemed before this trove: 10x the buffer.",
+          "points": 150,
+          "evidence": [
+            "mezo.debtAheadWei",
+            "mezo.rankFromFront",
+            "mezo.queueSize"
+          ]
+        },
+        {
+          "id": "B4_rescue_prefunded",
+          "claim": "The vault holds a rescue reserve, so a protect() call can lift the trove without the owner online.",
+          "points": 100,
+          "evidence": [
+            "mezo.reserveBtcWei",
+            "mezo.reserveMusdWei"
+          ]
+        },
+        {
+          "id": "B5_system_healthy",
+          "claim": "System TCR 293.59% and no Recovery Mode: the 110% line applies, not 150%.",
+          "points": 50,
+          "evidence": [
+            "mezo.tcrE18",
+            "mezo.recoveryMode"
+          ]
+        },
+        {
+          "id": "B6_prices_agree",
+          "claim": "Mezo oracle $81,719.69 and Chainlink $81,935.36 agree within 0.26%.",
+          "points": 50,
+          "evidence": [
+            "mezo.priceE18",
+            "chainlink.answerE8",
+            "market.btcUsdCentsCoingecko",
+            "market.btcUsdCentsCoinbase"
+          ]
+        },
+        {
+          "id": "B7_redemption_arb_edge",
+          "claim": "MUSD trades at $0.9893: redeeming at face value nets about 0.31% after an assumed 0.75% fee.",
+          "points": 120,
+          "evidence": [
+            "market.musdUsdMicros"
+          ]
+        }
+      ]
+    },
+    "bear": {
+      "agent": "bear",
+      "score": 348,
+      "arguments": [
+        {
+          "id": "R1_near_trigger",
+          "claim": "Only 5.58% of ICR headroom above the trigger.",
+          "points": 88,
+          "evidence": [
+            "mezo.icrE18",
+            "mezo.triggerE18"
+          ]
+        },
+        {
+          "id": "R3_liquidation_close",
+          "claim": "A 24.44% BTC drop would liquidate this trove.",
+          "points": 200,
+          "evidence": [
+            "mezo.priceE18",
+            "mezo.liquidationPriceE18"
+          ]
+        },
+        {
+          "id": "R8_peg_pressure",
+          "claim": "MUSD below peg ($0.9893) makes redemptions profitable, so redemption pressure on the front of the queue rises.",
+          "points": 60,
+          "evidence": [
+            "market.musdUsdMicros",
+            "mezo.front"
+          ]
+        }
+      ]
+    },
+    "trail": [
+      {
+        "rule": "Q1_trove_active",
+        "passed": true,
+        "detail": "troveStatus=1 (1 = active)"
+      },
+      {
+        "rule": "Q2_oracle_agreement",
+        "passed": true,
+        "detail": "mezo vs chainlink 26 bps <= 200"
+      },
+      {
+        "rule": "Q3_cex_agreement",
+        "passed": true,
+        "detail": "coingecko vs coinbase 1 bps <= 150"
+      },
+      {
+        "rule": "Q4_chainlink_fresh",
+        "passed": true,
+        "detail": "age 2137s <= 7200s"
+      },
+      {
+        "rule": "Q5_snapshot_fresh",
+        "passed": true,
+        "detail": "lag 0s <= 900s"
+      },
+      {
+        "rule": "Q6_queue_walk_complete",
+        "passed": true,
+        "detail": "walkComplete=true"
+      },
+      {
+        "rule": "R1_needs_protection",
+        "passed": false,
+        "detail": "vault.needsProtection=false"
+      },
+      {
+        "rule": "R2_bear_margin",
+        "passed": false,
+        "detail": "bear 348 - bull 470 = -122 >= 150"
+      },
+      {
+        "rule": "R3_default_hold",
+        "passed": true,
+        "detail": "no rule requires action"
+      },
+      {
+        "rule": "P1_redemption_arb",
+        "passed": true,
+        "detail": "edge 31 bps >= 25: buy 2000 MUSD, redeem at $1"
+      }
+    ],
+    "metrics": {
+      "icrBps": 14558,
+      "triggerBps": 14000,
+      "headroomBps": 558,
+      "liquidationGapBps": 2444,
+      "debtAheadMusd": 254376,
+      "redemptionBufferMusd": 25000,
+      "rankFromFront": 83,
+      "queueSize": 287,
+      "reserveFunded": true,
+      "tcrBps": 29359,
+      "mezoPriceCents": 8171969,
+      "chainlinkCents": 8193536,
+      "oracleDeviationBps": 26,
+      "cexDeviationBps": 1,
+      "chainlinkAgeSec": 2137,
+      "snapshotLagSec": 0,
+      "musdMicros": 989350,
+      "arbEdgeBps": 31
+    },
+    "evidenceHash": "0x043636a3fefb0cecd671eb5061b3f7a0bb016688f2923be5d9b83719b8fe9560",
+    "policyHash": "0x57065b3444adb76b5fbdc26e209f2d89ec531bdce8a189657e6ddfc527304b89",
+    "reasoningHash": "0x1212305802f8cd5508a6841e81fdf45bb7fa8f84332d1cf29b204ed087ca3f41"
+  },
+  "report": "0x000000000000000000000000000000000000000000000000000000006ad9d2280000000000000000000000000000000000000000000000000000000000f8a72f000000000000000000000000c92bfdc83b03d32e39930bfb789233e1cc0fdbef00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000184c00000000000000000000000000000000000000000000000000000000000038de00000000000000000000000000000000000000000000000000000000000001d6000000000000000000000000000000000000000000000000000000000000015c00000000000000000000000000000000000000000000006c6b935b8bbd400000043636a3fefb0cecd671eb5061b3f7a0bb016688f2923be5d9b83719b8fe956057065b3444adb76b5fbdc26e209f2d89ec531bdce8a189657e6ddfc527304b891212305802f8cd5508a6841e81fdf45bb7fa8f84332d1cf29b204ed087ca3f41"
+}
